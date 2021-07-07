@@ -1,0 +1,65 @@
+{% extends "Maipo/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="section-title"><br><br>
+    <h2 style="color:#73b02b">Compra</h2>
+    <p>Cliente local con retiro en nuestra bodega central</p>
+  </div>
+  <section>
+    <div style="width: 75%; margin: auto; color: black;">
+      <form action="/local/">
+        <button type="submit">Mostrar todo</button>
+      </form><br>
+      <label for="categoria">Categoria:</label>
+      <form action="/local/" method="GET">
+        {%for calidad in calidades %}
+          <button name="calidad" type="submit" value="{{calidad.nombre}}">{{calidad.nombre}}</button>
+        {%endfor%}
+      </form>
+    </div>
+  </section>
+  <div style="float: right;">
+    {% include "carro/widget.html" %}
+  </div>
+  <div class="row">
+  
+{% if calidadGet == None %}
+  {% for producto in productos %}
+    <div class="col-md-4">
+      <div class="card h-100" style="width: 100%; margin: 5px 5px;">
+        <img src="{{producto.imagen.url}}" class="card-img-top" style="width: 90%">
+        <div class="card-body" style="text-align: center;">
+          <h6 class="card-title">Producto: {{producto.nombre}}</h6> 
+          <p class="card-text">Calidad: {{producto.calidad}}</p>
+          <p class="card-text">Precio: $&nbsp;{{producto.precio}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Agregar</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  {% for producto in productos %}
+    {% if producto.calidad.nombre == calidadGet %}
+      <div class="col-md-4">
+        <div class="card h-100" style="width: 100%; margin: 5px 5px;">
+        <img src="{{producto.imagen.url}}" class="card-img-top" style="width: 90%">
+        <div class="card-body" style="text-align: center;">
+          <h6 class="card-title">Producto: {{producto.nombre}}</h6> 
+          <p class="card-text">Calidad: {{producto.calidad}}</p>
+          <p class="card-text">Precio: $&nbsp;{{producto.precio}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Agregar</a>
+        </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+  </div>
+</div>
+{% endblock %}

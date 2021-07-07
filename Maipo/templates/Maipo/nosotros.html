@@ -1,0 +1,19 @@
+{% extends "Maipo/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="section-title"><br><br>
+    <h2>Nosotros</h2>
+  </div>
+  <div class="row g-0 bg-light position-relative">
+    <div class="col-md-6 mb-md-0 p-md-4">
+      <img src="{% static 'Maipo/img/logo.png' %}" class="w-60" alt="...">
+    </div>
+    <div class="col-md-6 p-4 ps-md-0">
+      <h5 class="mt-0">Maipo Grande</h5>
+      <p>Somos una empresa intermediara en venta de productos agrícolas a nivel local e internacional, con más de 10 años de crecimiento. Durante este tiempo hemos logrado gran experiencia y reconocimiento en el rubro. Contamos con infraestructura de primer nivel, con los más altos estándares de seguridad. Lo anterior sumado a nuestro equipo humano y sistemas tecnológicos de clase mundial nos transforman en la mejor alternativa para su abastecimiento.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

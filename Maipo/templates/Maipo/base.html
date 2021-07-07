@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Feria Virtual | Alto Maipo</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'Maipo/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'Maipo/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'Maipo/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Maipo/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Maipo/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Maipo/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'Maipo/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Maipo/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'Maipo/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v1.5.1
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="{% static 'Maipo/img/logo.png' %}" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="{% url 'home'%}">Maipo Grande</a></h1>
+        {% if user.is_authenticated %}
+            <h2 style="text-align:center; color: white">{{ user.username}}</h2>
+        {% endif %}
+      </div>
+
+      <nav class="nav-menu">
+        <ul>
+          <li class="{% if request.path == '/' %}active{% endif%}"><a href="{% url 'home'%}"><i class="bx bx-home"></i><span>Inicio</span></a></li>
+          {% if perms.Maipo.add_solicitud%}
+          <li class="{% if request.path == '/extranjero' %}active{% endif%}"><a href="{% url 'extranjero'%}"><i class="fas fa-shopping-cart"></i><span>Ventas extranjero</span></a></li>
+          {% endif %}
+          {% if perms.local.add_producto%}
+          <li class="{% if request.path == '/local' %}active{% endif%}"><a href="{% url 'local'%}"><i class="fas fa-shopping-cart"></i><span>Ventas local</span></a></li>
+          {% endif %}
+          {% if perms.transporte.add_puja%}
+          <li class="{% if request.path == '/transporte' %}active{% endif%}"><a href="{% url 'transporte'%}"><i class="fas fa-user-friends"></i>Transporte</a></li>
+          {% endif %}
+          <li class="{% if request.path == '/nosotros' %}active{% endif%}"><a href="{% url 'nosotros'%}"><i class="bx bx-server"></i>Nosotros</a></li>
+          <li class=""><a href="{% url 'login'%}"><i class="bx bx-server"></i>Iniciar sesión</a></li>
+          {% if user.is_authenticated %}
+            <li class=""><a href="{% url 'login'%}"><i class="bx bx-server"></i>Cerrar sesión</a></li>
+          {% endif %}
+        </ul>
+      </nav><!-- .nav-menu -->
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+    </div>
+  </header><!-- End Header -->
+
+  <!--contenido cambiante-->
+  {% block content %}
+
+  {% endblock %}
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contacto</h2>
+          <p>Envianos un correo para mayor consulta o registro en nuestra empresa</p>
+        </div>
+
+        <div class="row" data-aos="fade-in">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Direccion:</h4>
+                <p>Av.Antonio Varas #666, Providencia, RM, chile</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>altomaipofrutas@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Telefono:</h4>
+                <p>+569 2222 2222</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.6134399180605!2d-70.6177833848011!3d-33.433321080778924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7b8af466fd%3A0xc8fd2d768e783103!2sDuoc%20UC%3A%20Antonio%20Varas!5e0!3m2!1ses-419!2scl!4v1624814497158!5m2!1ses-419!2scl" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch row g-0 bg-light position-relative">
+            <form action="/enviar_correo" method="POST"  id="contacto">{% csrf_token %}
+              <input type="hidden" id="pagina" name="pagina" value="home">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="name">Nombre</label>
+                  <input type="text" name="nombre" class="form-control" id="nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Email</label>
+                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Asunto</label>
+                <input type="text" class="form-control" name="asunto" id="asunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="name">Mensaje</label>
+                <textarea class="form-control" name="mensaje" id="mensaje" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="text-center"><button type="submit">Enviar</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Section -->
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'Maipo/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/typed.js/typed.min.js' %}"></script>
+  <script src="{% static 'Maipo/vendor/aos/aos.js' %}"></script>
+  
+  <!-- TOASTR-->
+  <link rel="stylesheet" href="{% static 'Maipo/vendor/toastr/toastr.css' %}" type="text/css">
+  <script type="text/javascript" src="{% static 'Maipo/vendor/toastr/toastr.js' %}"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="{% static 'Maipo/js/main.js' %}"></script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){ 
+      
+      $("#f_enviar").click(function(){
+        var empresa             = $("#s_nombreEmp").val();
+        var producto            = $("#s_producto").val();
+        var rut                 = $("#s_rut").val();
+        var cantidad            = $("#s_cantidad").val();
+        var fecha               = $("#s_fecSol").val();
+        var calidad             = $("#s_calidad").val();
+        var solicitante         = $("#s_solicitante").val();
+         
+        //ADEMAS DE VALIDAR SE PINTAN LAS CAJAS ROJO SI ESTA VACIO, VERDE SI ESTA OK
+        if(empresa == ''){
+
+          $("#s_nombreEmp").css({ "border":"1px solid red"});         
+          toastr.error("","<br>Campo Nombre empresa no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(producto == ''){
+
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid red"});           
+          toastr.error("","<br>Campo Producto no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(rut == ''){
+
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid red"}); 
+          toastr.error("","<br>Campo Rut no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(cantidad == ''){
+
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid #01DF01"});  
+          $("#s_cantidad").css({ "border":"1px solid red"}); 
+          toastr.error("","<br>Campo Cantidad no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(fecha == ''){
+
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid #01DF01"});  
+          $("#s_cantidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_fecSol").css({ "border":"1px solid red"}); 
+          toastr.error("","<br>Campo Fecha Solicitud no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(calidad == ''){
+          
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid #01DF01"});  
+          $("#s_cantidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_fecSol").css({ "border":"1px solid #01DF01"}); 
+          $("#s_calidad").css({ "border":"1px solid  red"}); 
+          toastr.error("","<br>Campo Calidad no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+
+        }else if(solicitante == ''){
+          
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid #01DF01"});  
+          $("#s_cantidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_fecSol").css({ "border":"1px solid #01DF01"}); 
+          $("#s_calidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_solicitante").css({ "border":"1px solid red"});
+          toastr.error("","<br>Campo Solicitante no puede quedar vacío<br><br>").css({"width"  : "100%" , "text-align" : "center"});
+         
+        }else{
+            
+          $("#s_nombreEmp").css({ "border":"1px solid #01DF01"});    
+          $("#s_producto").css({ "border":"1px solid #01DF01"});         
+          $("#s_rut").css({ "border":"1px solid #01DF01"});  
+          $("#s_cantidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_fecSol").css({ "border":"1px solid #01DF01"}); 
+          $("#s_calidad").css({ "border":"1px solid #01DF01"}); 
+          $("#s_solicitante").css({ "border":"1px solid #01DF01"});
+
+          $("#formulario").submit();
+          toastr.success('Mensaje enviado con exito');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
